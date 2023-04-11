@@ -94,25 +94,67 @@ filterByYear(rentalYears, 2010)
 // check average  year again
 checkAverageYear(rentalYears)
 
+
+
+
+
 let myRentalCar = {
     make: "Toyota",
     year: 2011,
-    features: ["All-wheel drive", "seatbelts", "bluetooth"]
+    features: ["All-wheel drive", "seatbelts",  "bluetooth"],
 }
 
+// remove seatbelts
+// myRentalCar.features.splice(1,1);
+myRentalCar.features.splice(myRentalCar.features.indexOf("seatbelts"),1);
+
+// let goodItems = []
+// for (let i=myRentalCar.features.length-1; i>=0; i--) {
+//     if (myRentalCar.features[i] !== "seatbelts"){
+//         // myRentalCar.features.splice(i,1);
+
+//         goodItems.push(myRentalCar.features[i])
+//     }
+// }
+// myRentalCar.features = goodItems;
+// .includes   returnes true or false if its in there
+
+// myRentalCar.features.forEach((item, indexOfItem) => {
+//     if (item === "seatbelts") {
+//         myRentalCar.features.splice(indexOfItem, 1)
+//     }
+// })
+
+
 // change make to "Ford"
+myRentalCar.make = "Ford";
 // change year to 2013
+myRentalCar.year = 2008
 // add property owner: "Enterprize"
+myRentalCar["owner"] = "Enterprize";
 // check if rental car is newer than 2010 AND has bluetooth
 // if yes, set renterIsHappy: true
+let isNewerCar = myRentalCar.year > 2010;
+// includes method
+let hasBluetooth = myRentalCar.features.includes("bluetooth");
 
+myRentalCar.renterIsHappy = myRentalCar.year > 2010 && myRentalCar.features.includes("bluetooth")
+// if (isNewerCar && hasBluetooth) {
+//     myRentalCar.renterIsHappy = true
+// } else {
+//     myRentalCar.renterIsHappy = false
+// }
+
+
+console.log(myRentalCar);
 
 // remove seatbelts from the car
 
 
 
 
-const rentalCars = [
+
+let rentalCars = [
     {
         make: "Toyota",
         year: 2011,
@@ -141,6 +183,15 @@ const rentalCars = [
 ]
 
 // user selects cars from 2010+
+let newerCars = []
+for (let i=0; i<rentalCars.length; i++) {
+    if (rentalCars[i].year >= 2010 && rentalCars[i].make.toLocaleLowerCase() === "hyundai") {
+        // push to new array
+        newerCars.push(rentalCars[i])
+    }
+}
+// console.log(newerCars);
+
 // make a new array with only these cars
 
 // user selects cars from 2010 AND only Hyundai
@@ -149,7 +200,23 @@ const rentalCars = [
 
 // We are removing all cars older than 2012 from our fleet
 
+// loop backwards with splice if year is < 2012
 
+const removeOldCars = (arrayToChange) => {
+    let newArray = arrayToChange.filter((carObject) => {
+        // return the car object IF it is new
+        if (carObject.year > 2011) {
+            return carObject
+        }
+        // IF it is old, do nothing
+    })
+    console.log(newArray);
+    rentalCars = newArray;
+}
+
+removeOldCars(rentalCars)
+
+console.log({rentalCars});
 
 
 
